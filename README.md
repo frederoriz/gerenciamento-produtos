@@ -13,15 +13,24 @@ Siga estes passos para configurar o projeto em sua máquina:
 
 ### 1. Clonar o repositório
 ```bash
-git clone [URL_DO_REPOSITORIO]
-cd [NOME_DO_PROJETO]
+git clone https://github.com/frederoriz/gerenciamento-produtos.git
 ```
 
-### 2. Configurar ambiente
-
-#### Criar arquivo do banco SQLite:
+### 2. Instalar dependências
 ```bash
-touch database/database.sqlite
+composer install
+```
+
+### 3. Configurar ambiente
+
+#### Instalar versão correta do php 8.3 
+```bash
+sudo apt install php8.3-intl
+```
+
+#### Instalar versão correta do sqlite3 
+```bash
+sudo apt install php8.3-sqlite3
 ```
 
 #### Configurar arquivo .env:
@@ -34,14 +43,9 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 3. Instalar dependências
-```bash
-composer install
-```
-
 ### 4. Banco de dados e dados iniciais
 ```bash
-php artisan migrate:fresh --seed
+php artisan migrate --seed
 ```
 
 ### 5. Iniciar ambiente de desenvolvimento
@@ -55,6 +59,8 @@ php artisan serve
 ```
 
 ## 🔑 Acesso ao Sistema
+
+Acesse a URL em "http://127.0.0.1:8000" ou "http://localhost:8000"
 
 Use as seguintes credenciais para login:
 
