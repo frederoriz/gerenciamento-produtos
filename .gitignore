@@ -1,4 +1,4 @@
-# *.sqlite
+/database/database.sqlite
 /.phpunit.cache
 /node_modules
 /public/build
