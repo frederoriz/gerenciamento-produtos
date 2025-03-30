@@ -1,12 +1,64 @@
-*Passo a passo para usar o projeto*
+# README - Instalação do Projeto
 
-#Instalar bd sqlite
+## 📋 Pré-requisitos
+
+- PHP 8.3
+- Composer 2.5+
+- Laravel 11
+- SQLite (para banco de dados local)
+
+## 🚀 Instalação Local
+
+Siga estes passos para configurar o projeto em sua máquina:
+
+### 1. Clonar o repositório
+```bash
+git clone [URL_DO_REPOSITORIO]
+cd [NOME_DO_PROJETO]
+```
+
+### 2. Configurar ambiente
+
+#### Criar arquivo do banco SQLite:
+```bash
 touch database/database.sqlite
+```
 
-#Alterar no .env
+#### Configurar arquivo .env:
+```bash
+cp .env.example .env
+```
+
+Edite o `.env` e configure:
+```ini
 DB_CONNECTION=sqlite
+```
 
-#Instalar o composer e dependencias
-composer require filament/filament:"^3.2" livewire/livewire
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+#### Gerar chave da aplicação:
+```bash
+php artisan key:generate
+```
+
+### 3. Instalar dependências
+```bash
+composer install
+```
+
+### 4. Configurar Filament e Livewire (dependências já incluídas no composer.json)
+
+### 5. Banco de dados e dados iniciais
+```bash
+php artisan migrate:fresh --seed
+```
+
+### 6. Iniciar servidor local
+```bash
+php artisan serve
+```
+
+## 🔑 Acesso ao Sistema
+
+Use as seguintes credenciais para login:
+
+- **Email:** `admin@growth.com`
+- **Senha:** `admin`
