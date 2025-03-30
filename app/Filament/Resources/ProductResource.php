@@ -161,4 +161,44 @@ class ProductResource extends Resource
                 ]),
             ]);
     }
+
+    /**
+     * Define o nome do recurso no menu de navegação.
+     *
+     * @return string
+     */
+    public static function getModelLabel(): string
+    {
+        return 'Produto';
+    }
+
+    /**
+     * Define o nome do recurso no menu de navegação no plural.
+     *
+     * @return string
+     */
+    public static function getPluralModelLabel(): string
+    {
+        return 'Produtos';
+    }
+
+    /**
+     * Define o nome do recurso na sidebar.
+     *
+     * @return string
+     */
+    public static function getNavigationLabel(): string
+    {
+        return 'Produtos';
+    }
+
+    /**
+     * Define o ícone do recurso na sidebar.
+     *
+     * @return string
+     */
+    public static function getNavigationIcon(): string
+    {
+        return 'heroicon-o-shopping-bag';
+    }
 }

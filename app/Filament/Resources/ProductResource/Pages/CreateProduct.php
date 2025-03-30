@@ -30,7 +30,7 @@ class CreateProduct extends CreateRecord
             return Product::createFromDTO($dto);
 
         } catch (\Throwable $e) {
-            // Log do erro completo para debug
+            
             Log::error('Falha ao criar produto', [
                 'error' => $e->getMessage(),
                 'data' => $data
