@@ -29,11 +29,6 @@ touch database/database.sqlite
 cp .env.example .env
 ```
 
-Edite o `.env` e configure:
-```ini
-DB_CONNECTION=sqlite
-```
-
 #### Gerar chave da aplicação:
 ```bash
 php artisan key:generate
