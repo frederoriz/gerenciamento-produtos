@@ -44,11 +44,14 @@ php artisan key:generate
 composer install
 ```
 
-### 4. Configurar Filament e Livewire (dependências já incluídas no composer.json)
-
-### 5. Banco de dados e dados iniciais
+### 4. Banco de dados e dados iniciais
 ```bash
 php artisan migrate:fresh --seed
+```
+
+### 5. Iniciar ambiente de desenvolvimento
+```bash
+npm run dev
 ```
 
 ### 6. Iniciar servidor local

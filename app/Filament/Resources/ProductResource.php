@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\DTO\CreateProductData;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Enums\ProductStatus;
 use App\Models\Product;
