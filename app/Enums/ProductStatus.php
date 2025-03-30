@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum ProductStatus: string
 {
-    case ACTIVE = 'active';
-    case INACTIVE = 'inactive';
+    case ACTIVE = 'Ativo';
+    case INACTIVE = 'Inativo';
 
     /**
      * Retorna a label do status do produto.

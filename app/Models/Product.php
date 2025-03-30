@@ -13,11 +13,6 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public string $name;
-    public ?string $description;
-    public float $price;
-    public ProductStatus $status;
-
     protected $casts = [
         'status' => ProductStatus::class,
         'price' => 'decimal:2',

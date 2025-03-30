@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ProductResource\Pages;
 
 use App\DTO\CreateProductData;
+use App\Enums\ProductStatus;
 use App\Filament\Resources\ProductResource;
 use App\Models\Product;
 use Filament\Resources\Pages\CreateRecord;
@@ -21,8 +22,13 @@ class CreateProduct extends CreateRecord
     protected function handleRecordCreation(array $data): Product
     {
         try {
+            // Converte o status de string para o enum ProductStatus
+            $data['status'] = ProductStatus::from($data['status']);
+
             $dto = new CreateProductData(...$data);
+
             return Product::createFromDTO($dto);
+
         } catch (\Throwable $e) {
             // Log do erro completo para debug
             Log::error('Falha ao criar produto', [

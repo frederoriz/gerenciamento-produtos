@@ -17,18 +17,6 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     /**
-     * Manipula a criação de registros através do formulário, utilizando o DTO.
-     *
-     * @param array $data
-     * @return Product
-     */
-    protected function handleRecordCreation(array $data): Product
-    {
-        $dto = new CreateProductData(...$data);
-        return Product::createFromDTO($dto);
-    }
-
-    /**
      * Define as páginas disponíveis para o recurso.
      *
      * @return array
@@ -76,7 +64,7 @@ class ProductResource extends Resource
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options(
-                        collect(ProductStatus::cases())->mapWithKeys(fn ($status) => [
+                        collect(ProductStatus::cases())->mapWithKeys(fn($status) => [
                             $status->value => $status->label(),
                         ])->toArray()
                     )
@@ -95,14 +83,21 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nome')
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('price')
+                    ->label('Preço')
                     ->money('BRL')
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->badge()
                     ->color(fn(ProductStatus $state): string => match ($state) {
                         ProductStatus::ACTIVE => 'success',
@@ -111,9 +106,8 @@ class ProductResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('deleted_at')
-                    ->label('Excluído em')
+                    ->label('Deletado em')
                     ->dateTime()
-                    ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             // Criar filtros para a tabela
@@ -135,11 +129,15 @@ class ProductResource extends Resource
                                     ->where('name', 'like', "%{$search}%")
                                     ->orWhere('description', 'like', "%{$search}%")
                             );
-                    })
+                    }),
+
+                Tables\Filters\TrashedFilter::make(), // Adiciona filtro para itens deletados
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\RestoreAction::make(), // Adiciona ação para restaurar itens deletados
+                Tables\Actions\ForceDeleteAction::make(), // Adiciona ação para deletar permanentemente
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

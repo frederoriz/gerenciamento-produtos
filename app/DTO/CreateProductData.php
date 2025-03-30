@@ -11,7 +11,7 @@ class CreateProductData
         public readonly string $name,
         public readonly string $description,
         public readonly float $price,
-        // #[Enum(ProductStatus::class)]
+        #[Enum(ProductStatus::class)]
         public readonly ProductStatus $status,
     ) {}
 
@@ -29,5 +29,4 @@ class CreateProductData
             'status' => ['required'],
         ];
     }
-
 }
