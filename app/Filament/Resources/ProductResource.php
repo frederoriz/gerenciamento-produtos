@@ -130,6 +130,21 @@ class ProductResource extends Resource
                             );
                     }),
 
+                Tables\Filters\Filter::make('search')
+                    ->form([
+                        Forms\Components\TextInput::make('query')
+                            ->label('Buscar ID')
+                            ->placeholder('ID'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['query'],
+                                fn(Builder  $query, string $search) => $query
+                                    ->where('id', $search)
+                            );
+                    }),
+
                 Tables\Filters\TrashedFilter::make(), // Adiciona filtro para itens deletados
             ])
             ->actions([
