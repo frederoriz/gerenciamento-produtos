@@ -28,9 +28,20 @@ composer install
 sudo apt install php8.3-intl
 ```
 
-#### Instalar versão correta do sqlite3 
+#### Instalar sqlite3 
 ```bash
 sudo apt install php8.3-sqlite3
+```
+
+#### Instalar bcmath
+```bash
+sudo apt install php8.3-bcmath
+```
+
+
+#### Instalar npm
+```bash
+npm install
 ```
 
 #### Configurar arquivo .env:
